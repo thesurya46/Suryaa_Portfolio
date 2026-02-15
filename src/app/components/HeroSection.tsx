@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { ChevronDown, Clock, MapPin } from 'lucide-react';
 import { downloadResume } from '../utils/resumeDownload';
-import profilePhoto from 'figma:asset/0a062a220b68b7fd04f9bc8bd6a7cf16acdc6ad8.png';
+import profilePhoto from '@/assets/0a062a220b68b7fd04f9bc8bd6a7cf16acdc6ad8.png';
 
 export function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
