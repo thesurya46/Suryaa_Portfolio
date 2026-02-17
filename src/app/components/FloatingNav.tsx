@@ -68,7 +68,7 @@ export function FloatingNav() {
                   key={item.name}
                   href={item.href}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${isActive
-                    ? 'bg-gradient-to-r from-red-600 to-red-900 text-white'
+                    ? 'bg-gradient-to-r from-[#00F5FF] to-[#7B2EFF] text-white'
                     : 'text-gray-400 hover:text-white'
                     }`}
                   style={{ fontFamily: 'Space Grotesk, sans-serif' }}
@@ -88,7 +88,7 @@ export function FloatingNav() {
       <AnimatePresence>
         {isVisible && (
           <motion.button
-            className="md:hidden fixed top-6 right-6 z-50 w-12 h-12 glass-strong rounded-full flex items-center justify-center neon-glow-red"
+            className="md:hidden fixed top-6 right-6 z-50 w-12 h-12 glass-strong rounded-full flex items-center justify-center neon-glow-blue"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
@@ -96,9 +96,9 @@ export function FloatingNav() {
             whileTap={{ scale: 0.9 }}
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-red-500" />
+              <X className="w-6 h-6 text-[#00F5FF]" />
             ) : (
-              <Menu className="w-6 h-6 text-red-500" />
+              <Menu className="w-6 h-6 text-[#00F5FF]" />
             )}
           </motion.button>
         )}
@@ -132,8 +132,8 @@ export function FloatingNav() {
                     key={item.name}
                     href={item.href}
                     className={`flex items-center gap-4 glass-strong px-8 py-4 rounded-full transition-all duration-300 ${isActive
-                      ? 'bg-gradient-to-r from-red-600 to-red-900 text-white neon-glow-red'
-                      : 'text-gray-400 hover:text-white hover:neon-glow-red'
+                        ? 'bg-gradient-to-r from-[#00F5FF] to-[#7B2EFF] text-white neon-glow-cyan'
+                        : 'text-gray-400 hover:text-white hover:neon-glow-blue'
                       }`}
                     style={{ fontFamily: 'Space Grotesk, sans-serif' }}
                     onClick={() => setIsMobileMenuOpen(false)}

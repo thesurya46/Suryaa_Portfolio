@@ -1,10 +1,10 @@
 /* Custom Portfolio Styles */
 
 :root {
-  --electric-blue: #FF0000;
-  --neon-purple: #8B0000;
-  --deep-space: #000000;
-  --cyan-glow: #FF0000;
+  --electric-blue: #00F5FF;
+  --neon-purple: #7B2EFF;
+  --deep-space: #0B0F19;
+  --cyan-glow: #00F5FF;
 }
 
 /* Custom Cursor */
@@ -273,7 +273,7 @@ html {
 /* Grid Background */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(255, 0, 0, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 0, 0, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(0, 245, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 255, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
 }

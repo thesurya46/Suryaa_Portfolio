@@ -57,7 +57,7 @@ export function HeroSection() {
       hue: number;
     }> = [];
 
-    // Create aesthetic dual-color particles (Red & Crimson)
+    // Create aesthetic dual-color particles
     for (let i = 0; i < 100; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -65,15 +65,15 @@ export function HeroSection() {
         vx: (Math.random() - 0.5) * 0.8,
         vy: (Math.random() - 0.5) * 0.8,
         size: Math.random() * 3 + 1,
-        hue: Math.random() > 0.5 ? 0 : 350, // Red or Crimson hue
+        hue: Math.random() > 0.5 ? 190 : 280, // Cyan or Purple
       });
     }
 
     let animationFrameId: number;
 
     const animate = () => {
-      // Smooth fade effect (Darker background)
-      ctx.fillStyle = 'rgba(5, 5, 5, 0.1)';
+      // Smooth fade effect
+      ctx.fillStyle = 'rgba(11, 15, 25, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle, i) => {
@@ -96,16 +96,16 @@ export function HeroSection() {
           particle.size * 4
         );
 
-        if (particle.hue === 0) {
-          // Bright Red particles
-          gradient.addColorStop(0, 'rgba(255, 0, 0, 0.8)');
-          gradient.addColorStop(0.5, 'rgba(200, 0, 0, 0.4)');
-          gradient.addColorStop(1, 'rgba(150, 0, 0, 0)');
+        if (particle.hue === 190) {
+          // Cyan particles
+          gradient.addColorStop(0, 'rgba(0, 245, 255, 0.8)');
+          gradient.addColorStop(0.5, 'rgba(0, 200, 255, 0.4)');
+          gradient.addColorStop(1, 'rgba(0, 150, 200, 0)');
         } else {
-          // Dark Red particles
-          gradient.addColorStop(0, 'rgba(139, 0, 0, 0.8)');
-          gradient.addColorStop(0.5, 'rgba(100, 0, 0, 0.4)');
-          gradient.addColorStop(1, 'rgba(80, 0, 0, 0)');
+          // Purple particles
+          gradient.addColorStop(0, 'rgba(123, 46, 255, 0.8)');
+          gradient.addColorStop(0.5, 'rgba(150, 80, 255, 0.4)');
+          gradient.addColorStop(1, 'rgba(100, 50, 200, 0)');
         }
 
         ctx.fillStyle = gradient;
@@ -128,9 +128,9 @@ export function HeroSection() {
             );
 
             const alpha = 0.3 * (1 - distance / 150);
-            lineGradient.addColorStop(0, `rgba(255, 0, 0, ${alpha})`);
-            lineGradient.addColorStop(0.5, `rgba(139, 0, 0, ${alpha * 0.8})`);
-            lineGradient.addColorStop(1, `rgba(255, 0, 0, ${alpha})`);
+            lineGradient.addColorStop(0, `rgba(0, 245, 255, ${alpha})`);
+            lineGradient.addColorStop(0.5, `rgba(80, 150, 220, ${alpha * 0.8})`);
+            lineGradient.addColorStop(1, `rgba(123, 46, 255, ${alpha})`);
 
             ctx.strokeStyle = lineGradient;
             ctx.lineWidth = 1;
@@ -165,7 +165,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050505]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0B0F19]">
       <canvas ref={canvasRef} className="particle-canvas" />
 
       {/* Grid Background */}
@@ -179,7 +179,7 @@ export function HeroSection() {
         transition={{ duration: 0.8, delay: 0.5 }}
       >
         {/* Status Widget */}
-        <div className="flex items-center gap-3 glass px-4 py-2 rounded-full border border-red-500/20 bg-black/40 backdrop-blur-md">
+        <div className="flex items-center gap-3 glass px-4 py-2 rounded-full border border-[#00F5FF]/30 bg-[#0B0F19]/40 backdrop-blur-md">
           <div className="relative">
             <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
             <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-green-500 animate-ping opacity-75" />
@@ -191,19 +191,19 @@ export function HeroSection() {
         </div>
 
         {/* Time Widget */}
-        <div className="glass px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-red-500/20 bg-black/40 backdrop-blur-md">
+        <div className="glass px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-[#00F5FF]/30 bg-[#0B0F19]/40 backdrop-blur-md">
           <div className="flex items-center gap-3">
             <div className="flex flex-col items-end">
               <span className="text-xs md:text-sm text-white font-mono font-bold tracking-widest">
                 {formatTime(currentTime)}
               </span>
-              <span className="text-[10px] text-red-500 font-medium tracking-wide">
+              <span className="text-[10px] text-[#00F5FF] font-medium tracking-wide">
                 {formatDate(currentTime)}
               </span>
             </div>
             <div className="h-6 w-[1px] bg-white/10" />
             <div className="flex items-center gap-1.5 text-gray-400">
-              <MapPin className="w-3 h-3 text-red-500" />
+              <MapPin className="w-3 h-3 text-[#7B2EFF]" />
               <span className="text-[10px] uppercase tracking-wide">Odisha, IN</span>
             </div>
           </div>
@@ -218,20 +218,20 @@ export function HeroSection() {
           transition={{ duration: 0.8 }}
           className="flex flex-col items-center"
         >
-          {/* Profile Photo with Red Glow */}
+          {/* Profile Photo with Cyan Glow */}
           <motion.div
-            className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-red-500 mb-8"
+            className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-[#00F5FF] mb-8"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
           >
-            <div className="absolute inset-0 bg-red-500/20 animate-pulse" />
+            <div className="absolute inset-0 bg-[#00F5FF]/20 animate-pulse" />
             <img
               src={profilePhoto}
               alt="Surya"
               className="w-full h-full object-cover relative z-10"
             />
-            <div className="absolute inset-0 ring-4 ring-red-500/30 rounded-full animate-pulse" />
+            <div className="absolute inset-0 ring-4 ring-[#00F5FF]/30 rounded-full animate-pulse" />
           </motion.div>
 
           {/* Name & Title */}
@@ -240,7 +240,7 @@ export function HeroSection() {
             style={{ fontFamily: 'Space Grotesk, sans-serif' }}
           >
             Surya Snata
-            <span className="text-red-600 block md:inline md:ml-4">Panigrahi</span>
+            <span className="text-[#00F5FF] block md:inline md:ml-4">Panigrahi</span>
           </motion.h1>
 
           <motion.div
@@ -249,11 +249,11 @@ export function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-red-500" />
-            <span className="text-lg md:text-xl text-red-500 font-mono tracking-widest uppercase">
+            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#00F5FF]" />
+            <span className="text-lg md:text-xl text-[#00F5FF] font-mono tracking-widest uppercase">
               Data Scientist & Developer
             </span>
-            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-red-500" />
+            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#00F5FF]" />
           </motion.div>
 
           <motion.p
@@ -273,10 +273,10 @@ export function HeroSection() {
           >
             <a
               href="#projects"
-              className="group relative px-8 py-3.5 bg-red-600 text-white rounded-lg flex items-center gap-2 overflow-hidden w-full sm:w-auto justify-center"
+              className="group relative px-8 py-3.5 bg-gradient-to-r from-[#00F5FF] to-[#7B2EFF] text-white rounded-lg flex items-center gap-2 overflow-hidden w-full sm:w-auto justify-center"
             >
               <span className="relative z-10 font-medium tracking-wide">View Work</span>
-              <div className="absolute inset-0 bg-red-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+              <div className="absolute inset-0 bg-[#00F5FF] opacity-50 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
             </a>
 
             <button
@@ -299,7 +299,7 @@ export function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
         >
-          <span className="text-[10px] uppercase tracking-widest text-red-500">Scroll</span>
+          <span className="text-[10px] uppercase tracking-widest text-[#00F5FF]">Scroll</span>
           <ChevronDown className="w-5 h-5 text-white animate-bounce" />
         </motion.button>
       </div>
