@@ -1,5 +1,5 @@
 
-# Surya Portfolio
+# Surya Portfolio :
 
 A stunning personal portfolio website built with React, TypeScript, and modern web technologies.
 
