@@ -73,7 +73,7 @@ const projects = [
     tags: ['Python', 'Pandas', 'Seaborn', 'Excel'],
     gradient: 'from-[#00F5FF] to-[#7B2EFF]',
     icon: '💰',
-    image: 'https://images.unsplash.com/photo-1611974765270-ca1258634369?q=80&w=2664&auto=format&fit=crop', // Finance/Graph
+    image: 'https://images.unsplash.com/photo-1642543492481-44e81e3914a7?q=80&w=2670&auto=format&fit=crop', // Financial coding/charts
   },
 ];
 
