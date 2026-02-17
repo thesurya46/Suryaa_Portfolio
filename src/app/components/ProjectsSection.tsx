@@ -9,6 +9,7 @@ const projects = [
     tags: ['Python', 'HTML', 'CSS', 'LLM', 'AI'],
     gradient: 'from-[#00F5FF] to-[#0088FF]',
     icon: '⚡',
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2670&auto=format&fit=crop', // Matrix/Security
   },
   {
     title: 'Human AI Memory Continuity System',
@@ -16,6 +17,7 @@ const projects = [
     tags: ['TypeScript', 'Python', 'JavaScript', 'HTML', 'CSS'],
     gradient: 'from-[#7B2EFF] to-[#B02EFF]',
     icon: '🧠',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2670&auto=format&fit=crop', // Coding screen
   },
   {
     title: 'AI for Quality Chatbot',
@@ -23,6 +25,7 @@ const projects = [
     tags: ['Python', 'AI/ML', 'NLP', '.gitattributes'],
     gradient: 'from-[#00F5FF] to-[#7B2EFF]',
     icon: '🤖',
+    image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2670&auto=format&fit=crop', // AI/Robot
   },
   {
     title: 'Love in Rotation',
@@ -30,6 +33,7 @@ const projects = [
     tags: ['JavaScript', 'HTML', 'CSS', '3D Graphics', 'Animations'],
     gradient: 'from-[#FF006E] to-[#7B2EFF]',
     icon: '💝',
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2670&auto=format&fit=crop', // 3D/Abstract
   },
   {
     title: 'Computer Vision Analytics',
@@ -37,6 +41,7 @@ const projects = [
     tags: ['Python', 'OpenCV', 'LLM', 'Computer Vision'],
     gradient: 'from-[#00F5FF] to-[#00FFB3]',
     icon: '👁️',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop', // Data/Vision
   },
   {
     title: 'Urban Skill Exchange',
@@ -44,6 +49,7 @@ const projects = [
     tags: ['HTML', 'JavaScript', 'CSS', 'TypeScript', 'JSX', 'JSON'],
     gradient: 'from-[#7B2EFF] to-[#0088FF]',
     icon: '🌆',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop', // Global/Network
   },
   {
     title: 'Data Analytics Dashboard',
@@ -51,6 +57,7 @@ const projects = [
     tags: ['Python', 'Pandas', 'Tableau', 'Django'],
     gradient: 'from-[#00FFB3] to-[#00F5FF]',
     icon: '📊',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop', // Dashboard
   },
   {
     title: 'ML Model Deployment',
@@ -58,6 +65,7 @@ const projects = [
     tags: ['Python', 'Hugging Face', 'Flask', 'MySQL'],
     gradient: 'from-[#B02EFF] to-[#7B2EFF]',
     icon: '🚀',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2670&auto=format&fit=crop', // Coding Laptop
   },
   {
     title: 'Financial Analysis Tool',
@@ -65,6 +73,7 @@ const projects = [
     tags: ['Python', 'Pandas', 'Seaborn', 'Excel'],
     gradient: 'from-[#00F5FF] to-[#7B2EFF]',
     icon: '💰',
+    image: 'https://images.unsplash.com/photo-1611974765270-ca1258634369?q=80&w=2664&auto=format&fit=crop', // Finance/Graph
   },
 ];
 
@@ -75,7 +84,7 @@ export function ProjectsSection() {
     <section id="projects" ref={ref} className="min-h-screen py-24 px-6 relative overflow-hidden">
       {/* Background Grid */}
       <div className="absolute inset-0 grid-bg opacity-20" />
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.h2
           className="text-5xl md:text-6xl gradient-text mb-4 text-center"
@@ -122,42 +131,34 @@ export function ProjectsSection() {
                 e.currentTarget.style.setProperty('--rotate-y', '0deg');
               }}
             >
+              {/* Project Image */}
+              <div className="relative h-48 overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] to-transparent z-10 opactiy-80" />
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                />
+
+                {/* Overlay Icon */}
+                <div className="absolute top-4 right-4 z-20 w-10 h-10 rounded-xl bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/10">
+                  <span className="text-xl">{project.icon}</span>
+                </div>
+              </div>
+
               {/* Project Header with Gradient */}
               <div
-                className={`h-2 bg-gradient-to-r ${project.gradient}`}
+                className={`h-1 bg-gradient-to-r ${project.gradient}`}
                 style={{
                   boxShadow: '0 4px 20px rgba(0, 245, 255, 0.3)',
                 }}
               />
-              
+
               <div className="p-6">
-                {/* Icon with Emoji */}
-                <div className="mb-4 flex items-center justify-between">
-                  <div
-                    className="w-14 h-14 rounded-xl bg-gradient-to-br flex items-center justify-center relative overflow-hidden"
-                    style={{
-                      background: `linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(123, 46, 255, 0.2))`,
-                      boxShadow: '0 0 20px rgba(0, 245, 255, 0.2)',
-                    }}
-                  >
-                    <Code2 className="w-7 h-7 text-[#00F5FF]" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#00F5FF]/10 to-[#7B2EFF]/10 group-hover:from-[#00F5FF]/20 group-hover:to-[#7B2EFF]/20 transition-all duration-300" />
-                  </div>
-                  
-                  {/* Large Emoji Icon */}
-                  <motion.div
-                    className="text-4xl"
-                    animate={{
-                      rotate: [0, 10, -10, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                  >
-                    {project.icon}
-                  </motion.div>
+                {/* Code Icon (Removed the large icon section as we have image now) */}
+                <div className="mb-4 flex items-center gap-2">
+                  <Code2 className="w-5 h-5 text-[#00F5FF]" />
+                  <span className="text-xs text-[#00F5FF] font-mono tracking-widest uppercase">Project</span>
                 </div>
 
                 {/* Title */}
