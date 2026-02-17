@@ -1,11 +1,11 @@
 // Resume file
-const resumeUrl = '/Resume.jpg';
+const resumeUrl = '/Resume.png';
 
 export async function downloadResume() {
   try {
     const link = document.createElement('a');
     link.href = resumeUrl;
-    link.download = 'Surya_Snata_Panigrahi_Resume.jpg';
+    link.download = 'Surya_Snata_Panigrahi_Resume.png';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
