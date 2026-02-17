@@ -1,10 +1,10 @@
 /* Custom Portfolio Styles */
 
 :root {
-  --electric-blue: #00F5FF;
-  --neon-purple: #7B2EFF;
-  --deep-space: #0B0F19;
-  --cyan-glow: #00F5FF;
+  --electric-blue: #FF0000;
+  --neon-purple: #8B0000;
+  --deep-space: #000000;
+  --cyan-glow: #FF0000;
 }
 
 /* Custom Cursor */
@@ -51,20 +51,20 @@
 /* Neon Glow Effects */
 .neon-glow-blue {
   box-shadow: 0 0 20px rgba(0, 245, 255, 0.3),
-              0 0 40px rgba(0, 245, 255, 0.2),
-              0 0 60px rgba(0, 245, 255, 0.1);
+    0 0 40px rgba(0, 245, 255, 0.2),
+    0 0 60px rgba(0, 245, 255, 0.1);
 }
 
 .neon-glow-purple {
   box-shadow: 0 0 20px rgba(123, 46, 255, 0.3),
-              0 0 40px rgba(123, 46, 255, 0.2),
-              0 0 60px rgba(123, 46, 255, 0.1);
+    0 0 40px rgba(123, 46, 255, 0.2),
+    0 0 60px rgba(123, 46, 255, 0.1);
 }
 
 .neon-glow-cyan {
   box-shadow: 0 0 30px rgba(0, 245, 255, 0.4),
-              0 0 60px rgba(0, 245, 255, 0.3),
-              0 0 90px rgba(0, 245, 255, 0.2);
+    0 0 60px rgba(0, 245, 255, 0.3),
+    0 0 90px rgba(0, 245, 255, 0.2);
 }
 
 /* Gradient Text */
@@ -78,9 +78,12 @@
 }
 
 @keyframes gradient-shift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -116,9 +119,11 @@
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -168,9 +173,12 @@ html {
 
 /* Floating Animation */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-20px) rotate(5deg);
   }
@@ -182,10 +190,13 @@ html {
 
 /* Pulse Animation */
 @keyframes pulse-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.7;
     transform: scale(1.05);
@@ -198,7 +209,7 @@ html {
 
 /* Gradient Mesh Background */
 .gradient-mesh {
-  background: 
+  background:
     radial-gradient(circle at 20% 30%, rgba(0, 245, 255, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, rgba(123, 46, 255, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.1) 0%, transparent 70%);
@@ -206,9 +217,12 @@ html {
 
 /* Scroll Indicator */
 @keyframes scroll-bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(10px);
   }
@@ -258,8 +272,8 @@ html {
 
 /* Grid Background */
 .grid-bg {
-  background-image: 
-    linear-gradient(rgba(0, 245, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 245, 255, 0.1) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(255, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
 }

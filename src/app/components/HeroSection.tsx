@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { ChevronDown, Clock, MapPin } from 'lucide-react';
+import { ChevronDown, Clock, MapPin, Activity } from 'lucide-react';
 import { downloadResume } from '../utils/resumeDownload';
 import profilePhoto from '@/assets/0a062a220b68b7fd04f9bc8bd6a7cf16acdc6ad8.png';
 
@@ -30,10 +30,10 @@ export function HeroSection() {
 
   // Format date
   const formatDate = (date: Date) => {
-    const options: Intl.DateTimeFormatOptions = { 
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric' 
+    const options: Intl.DateTimeFormatOptions = {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
     };
     return date.toLocaleDateString('en-US', options);
   };
@@ -57,7 +57,7 @@ export function HeroSection() {
       hue: number;
     }> = [];
 
-    // Create aesthetic dual-color particles
+    // Create aesthetic dual-color particles (Red & Crimson)
     for (let i = 0; i < 100; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -65,15 +65,15 @@ export function HeroSection() {
         vx: (Math.random() - 0.5) * 0.8,
         vy: (Math.random() - 0.5) * 0.8,
         size: Math.random() * 3 + 1,
-        hue: Math.random() > 0.5 ? 190 : 280, // Cyan or Purple
+        hue: Math.random() > 0.5 ? 0 : 350, // Red or Crimson hue
       });
     }
 
     let animationFrameId: number;
 
     const animate = () => {
-      // Smooth fade effect
-      ctx.fillStyle = 'rgba(11, 15, 25, 0.1)';
+      // Smooth fade effect (Darker background)
+      ctx.fillStyle = 'rgba(5, 5, 5, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle, i) => {
@@ -95,19 +95,19 @@ export function HeroSection() {
           particle.y,
           particle.size * 4
         );
-        
-        if (particle.hue === 190) {
-          // Cyan particles
-          gradient.addColorStop(0, 'rgba(0, 245, 255, 0.8)');
-          gradient.addColorStop(0.5, 'rgba(0, 200, 255, 0.4)');
-          gradient.addColorStop(1, 'rgba(0, 150, 200, 0)');
+
+        if (particle.hue === 0) {
+          // Bright Red particles
+          gradient.addColorStop(0, 'rgba(255, 0, 0, 0.8)');
+          gradient.addColorStop(0.5, 'rgba(200, 0, 0, 0.4)');
+          gradient.addColorStop(1, 'rgba(150, 0, 0, 0)');
         } else {
-          // Purple particles
-          gradient.addColorStop(0, 'rgba(123, 46, 255, 0.8)');
-          gradient.addColorStop(0.5, 'rgba(150, 80, 255, 0.4)');
-          gradient.addColorStop(1, 'rgba(100, 50, 200, 0)');
+          // Dark Red particles
+          gradient.addColorStop(0, 'rgba(139, 0, 0, 0.8)');
+          gradient.addColorStop(0.5, 'rgba(100, 0, 0, 0.4)');
+          gradient.addColorStop(1, 'rgba(80, 0, 0, 0)');
         }
-        
+
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size * 2, 0, Math.PI * 2);
@@ -126,12 +126,12 @@ export function HeroSection() {
               otherParticle.x,
               otherParticle.y
             );
-            
+
             const alpha = 0.3 * (1 - distance / 150);
-            lineGradient.addColorStop(0, `rgba(0, 245, 255, ${alpha})`);
-            lineGradient.addColorStop(0.5, `rgba(80, 150, 220, ${alpha * 0.8})`);
-            lineGradient.addColorStop(1, `rgba(123, 46, 255, ${alpha})`);
-            
+            lineGradient.addColorStop(0, `rgba(255, 0, 0, ${alpha})`);
+            lineGradient.addColorStop(0.5, `rgba(139, 0, 0, ${alpha * 0.8})`);
+            lineGradient.addColorStop(1, `rgba(255, 0, 0, ${alpha})`);
+
             ctx.strokeStyle = lineGradient;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -165,92 +165,49 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden noise-bg">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050505]">
       <canvas ref={canvasRef} className="particle-canvas" />
-      
-      {/* Gradient Mesh Background */}
-      <div className="absolute inset-0 gradient-mesh pointer-events-none" />
-      
+
+      {/* Grid Background */}
+      <div className="absolute inset-0 grid-bg pointer-events-none opacity-20" />
+
       {/* Real-Time Status Bar - Top Right */}
       <motion.div
-        className="absolute top-4 right-4 md:top-6 md:right-6 z-20 flex items-center gap-2 md:gap-4"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        className="absolute top-4 right-4 md:top-6 md:right-6 z-20 flex flex-col items-end gap-2 md:gap-4"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
       >
-        {/* Profile Photo */}
-        <motion.div
-          className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#00F5FF] glass"
-          whileHover={{ scale: 1.1 }}
-          animate={{
-            boxShadow: [
-              '0 0 20px rgba(0, 245, 255, 0.5)',
-              '0 0 30px rgba(123, 46, 255, 0.5)',
-              '0 0 20px rgba(0, 245, 255, 0.5)',
-            ],
-          }}
-          transition={{ duration: 3, repeat: Infinity }}
-        >
-          <img
-            src={profilePhoto}
-            alt="Surya"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
+        {/* Status Widget */}
+        <div className="flex items-center gap-3 glass px-4 py-2 rounded-full border border-red-500/20 bg-black/40 backdrop-blur-md">
+          <div className="relative">
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
+            <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-green-500 animate-ping opacity-75" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[10px] uppercase tracking-wider text-gray-400 font-medium">Status</span>
+            <span className="text-xs text-white font-bold tracking-wide">ONLINE</span>
+          </div>
+        </div>
 
-        {/* Status Card */}
-        <motion.div
-          className="glass px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-[#00F5FF]/30 backdrop-blur-lg"
-          whileHover={{ scale: 1.05 }}
-        >
-          <div className="flex flex-col gap-0.5 md:gap-1">
-            {/* Time */}
-            <div className="flex items-center gap-1.5 md:gap-2">
-              <Clock className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#00F5FF]" />
-              <span
-                className="text-[10px] md:text-xs text-white font-medium"
-                style={{ fontFamily: 'Space Grotesk, sans-serif' }}
-              >
+        {/* Time Widget */}
+        <div className="glass px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-red-500/20 bg-black/40 backdrop-blur-md">
+          <div className="flex items-center gap-3">
+            <div className="flex flex-col items-end">
+              <span className="text-xs md:text-sm text-white font-mono font-bold tracking-widest">
                 {formatTime(currentTime)}
               </span>
-            </div>
-            {/* Date */}
-            <div className="flex items-center gap-1.5 md:gap-2">
-              <span className="text-[10px] md:text-xs text-[#00F5FF]">📅</span>
-              <span
-                className="text-[9px] md:text-xs text-gray-300"
-                style={{ fontFamily: 'Inter, sans-serif' }}
-              >
+              <span className="text-[10px] text-red-500 font-medium tracking-wide">
                 {formatDate(currentTime)}
               </span>
             </div>
-            {/* Location */}
-            <div className="flex items-center gap-1.5 md:gap-2">
-              <MapPin className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#7B2EFF]" />
-              <span
-                className="text-[9px] md:text-xs text-gray-400"
-                style={{ fontFamily: 'Inter, sans-serif' }}
-              >
-                Keonjhar, Odisha
-              </span>
+            <div className="h-6 w-[1px] bg-white/10" />
+            <div className="flex items-center gap-1.5 text-gray-400">
+              <MapPin className="w-3 h-3 text-red-500" />
+              <span className="text-[10px] uppercase tracking-wide">Odisha, IN</span>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
-      
-      {/* 3D AI Orb */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2"
-        animate={{
-          rotate: [0, 360],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          rotate: { duration: 20, repeat: Infinity, ease: 'linear' },
-          scale: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
-        }}
-      >
-        <div className="w-full h-full rounded-full bg-gradient-to-br from-[#00F5FF]/20 to-[#7B2EFF]/20 blur-3xl pulse-glow" />
+        </div>
       </motion.div>
 
       {/* Hero Content */}
@@ -259,58 +216,67 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="flex flex-col items-center"
         >
-          <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl gradient-text mb-6"
-            style={{ fontFamily: 'Sora, sans-serif', letterSpacing: '0.1em', fontWeight: '300' }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
+          {/* Profile Photo with Red Glow */}
+          <motion.div
+            className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-red-500 mb-8"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
           >
-            Surya Snata Panigrahi
+            <div className="absolute inset-0 bg-red-500/20 animate-pulse" />
+            <img
+              src={profilePhoto}
+              alt="Surya"
+              className="w-full h-full object-cover relative z-10"
+            />
+            <div className="absolute inset-0 ring-4 ring-red-500/30 rounded-full animate-pulse" />
+          </motion.div>
+
+          {/* Name & Title */}
+          <motion.h1
+            className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight"
+            style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+          >
+            Surya Snata
+            <span className="text-red-600 block md:inline md:ml-4">Panigrahi</span>
           </motion.h1>
 
-          <motion.p
-            className="text-2xl md:text-3xl text-[#00F5FF] mb-4"
-            style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+          <motion.div
+            className="flex items-center gap-3 mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ delay: 0.3 }}
           >
-            Data Enthusiast
-          </motion.p>
+            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-red-500" />
+            <span className="text-lg md:text-xl text-red-500 font-mono tracking-widest uppercase">
+              Data Scientist & Developer
+            </span>
+            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-red-500" />
+          </motion.div>
 
           <motion.p
-            className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto"
-            style={{ fontFamily: 'Inter, sans-serif' }}
+            className="text-base md:text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            transition={{ delay: 0.5 }}
           >
-            Student passionate about transforming data into actionable insights
+            Crafting intelligent solutions through <span className="text-white font-medium">Data Science</span> and <span className="text-white font-medium">Modern Web Technologies</span>.
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-5 justify-center items-center w-full sm:w-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
           >
             <a
               href="#projects"
-              className="group relative px-8 py-4 bg-gradient-to-r from-[#00F5FF] to-[#7B2EFF] rounded-full overflow-hidden ripple-button"
-              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+              className="group relative px-8 py-3.5 bg-red-600 text-white rounded-lg flex items-center gap-2 overflow-hidden w-full sm:w-auto justify-center"
             >
-              <span className="relative z-10 text-white font-semibold flex items-center gap-2">
-                View Projects
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  →
-                </motion.span>
-              </span>
-              <div className="absolute inset-0 neon-glow-cyan opacity-50" />
+              <span className="relative z-10 font-medium tracking-wide">View Work</span>
+              <div className="absolute inset-0 bg-red-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
             </a>
 
             <button
@@ -318,10 +284,9 @@ export function HeroSection() {
                 e.preventDefault();
                 downloadResume();
               }}
-              className="group px-8 py-4 glass rounded-full border border-[#00F5FF]/30 hover:border-[#00F5FF] transition-all duration-300 animated-border cursor-pointer"
-              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+              className="group px-8 py-3.5 bg-transparent border border-white/20 text-white rounded-lg hover:bg-white/5 transition-all w-full sm:w-auto"
             >
-              <span className="text-white font-semibold">Download Resume</span>
+              <span className="font-medium tracking-wide">Download Resume</span>
             </button>
           </motion.div>
         </motion.div>
@@ -329,12 +294,13 @@ export function HeroSection() {
         {/* Scroll Indicator */}
         <motion.button
           onClick={scrollToAbout}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 scroll-indicator cursor-pointer"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
         >
-          <ChevronDown className="w-8 h-8 text-[#00F5FF]" />
+          <span className="text-[10px] uppercase tracking-widest text-red-500">Scroll</span>
+          <ChevronDown className="w-5 h-5 text-white animate-bounce" />
         </motion.button>
       </div>
     </section>
